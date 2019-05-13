@@ -1,0 +1,16 @@
+{% extends "article_base.html" %}
+{% block title %}
+{{article_obj.title}}
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="">
+<article>
+  <h1 style="text-align:center">{{article_obj.title}}</h1>
+  <p>{% autoescape off %}{{article_obj.content}}{% endautoescape %}</p>
+</article>
+<footer>
+  <p>作者：{{article_obj.author}}</p>
+  <p>创作时间：{{article_obj.created_time}}</p>
+  <p><a href="http://127.0.0.1:8000/article/type">类别</a>：{{article_obj.article_Type}}</p>
+</footer>
+{% endblock %}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    {% block head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        *{
+            margin:0;
+            }
+        body{
+            background-color:rgba(0, 128, 0, 0.26);
+            background-size: 100%;
+            background-position: center top;
+            font-family: Tahoma,Arial,"Hiragino Sans GB","simsun",sans-serif;
+            background-attachment: fixed;
+            }
+        nav {
+            background-color: rgba(4,63,23,0.5);
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            box-shadow: -10px 10px 5px lemonchiffon;
+            z-index: 1;
+        }
+
+        nav li{
+            list-style:none;
+            display: inline-block;
+            }
+        nav a{
+            float:left ;
+            text-decoration: none;
+            color: #008071;
+            position: relative;
+
+            transition-duration: 3s;
+        }
+
+        nav a:hover{
+            text-transform: uppercase;
+        }
+
+    </style>
+
+</head>
+<body >
+  <header>
+    <nav>
+      <ul class="CF">
+        <li><a   style="font-size: 70px;margin-left: -30px;" href="/">My Blog</a></li>
+        <li><a   style="margin-left:100px;margin-top: 60px" href="/article" >文章</a></li>
+        <li  style="float: right"><a  style="margin-left:100px;margin-top: 60px;" href="/admin">管理</a></li>
+      </ul >
+    </nav>
+  </header>
+<hr>
+<div style="padding-top: 100px" >{% block content %}{% endblock %}
+</div>
+</body>
+</html>

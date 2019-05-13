@@ -1,0 +1,68 @@
+{% extends "article_base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+{% endblock %}
+
+{% block title%}
+list
+{% endblock %}
+
+
+{% block content %}
+<style>
+        .list{
+         font-size:20px;
+
+        margin:10px 0;
+
+
+
+        }
+        .list a:link{
+            color: yellow;
+            }
+        .list a:visited{
+            color:red;
+            }
+        .list a:hover{
+            color:orange;
+            }
+</style>
+
+<div >
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-success">
+                <div class="panel-heading" >
+                    <h3 class="panel-title" >文章列表</h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                {% for article in articles %}
+                <div class="list">
+                    <a  href="{% url 'article_detail' article.pk %}">{{article.title}}</a>
+                    <div>{{article.content|truncatechars:80}}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">文章列表</h3>
+                </div>
+            </div>
+              <div class="panel-body">
+             {% for article_type in Article_Types %}
+                <h1><a href="{% url 'article_type' article_type.pk %}">{{article_type.type_name}}</a></h1>
+             {% endfor %}
+              </div>
+        </div>
+          </div>
+    </div>
+</div>
+
+
+{% endblock %}

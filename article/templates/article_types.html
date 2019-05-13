@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for article_type in Article_Types %}
+         <h1><a href="{% url 'article_type' article_type.pk %}">{{article_type.type_name}}</a></h1>
+    {% endfor %}
+</body>
+</html>
