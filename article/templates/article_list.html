@@ -19,13 +19,13 @@ list
 
 
         }
-        .list a:link{
+        .list>a:link{
             color: yellow;
             }
-        .list a:visited{
+        .list>a:visited{
             color:red;
             }
-        .list a:hover{
+        .list>a:hover{
             color:orange;
             }
 </style>
@@ -43,7 +43,7 @@ list
                 {% for article in articles %}
                 <div class="list">
                     <a  href="{% url 'article_detail' article.pk %}">{{article.title}}</a>
-                    <div>{{article.content|truncatechars:80}}</div>
+                    <div>{{article.content|striptags|truncatechars:80}}</div>
                 </div>
                 {% endfor %}
             </div>
@@ -51,7 +51,7 @@ list
         <div class="col-md-3">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">文章列表</h3>
+                    <h3 class="panel-title">类别</h3>
                 </div>
             </div>
               <div class="panel-body">
