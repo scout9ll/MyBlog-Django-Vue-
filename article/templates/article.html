@@ -1,13 +1,45 @@
 {% extends "article_base.html" %}
 {% load static %}
 
+{% block style%}
+        <style>
+        header {
+            height: 50vh;
+            background:url("{% static 'article/boatInSea.gif' %}") no-repeat 0px -587px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+        }
+        h1 {
+          color: white;
+          font-size: 5vw;
+          text-shadow: 3px 4px 0 rgba(0,0,0,0.2);
+        }
+    </style>
+{% endblock %}
+
+
+
+
 {% block title%}
 首页
 {% endblock %}
 
 
+
+{% block header%}
+    <header>
+        <h1>
+        can you find your  boat in the sea?
+        </h1>
+    </header>
+{% endblock %}
+
+
+
 {% block content %}
-<div style="display: flex;justify-content: center;align-items: center;width: 100%">
+<div style="display: flex;justify-content: center;align-items: center;width: 100%;padding-top:10px">
     <img  style="width:100%" src="{% static 'article/architectural-design-architecture-building-2224768.jpg' %}" alt="My image">
 
 </div>

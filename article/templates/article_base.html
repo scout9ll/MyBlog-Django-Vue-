@@ -1,62 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
 
     <meta charset="UTF-8">
     {% block head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
+    {% block style %}{% endblock %}
     <style>
-        *{
-            margin:0;
-            }
-        body{
-            background-color:rgba(0, 128, 0, 0.26);
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* *:not(path):not(g) {
+            color: hsla(210, 100%, 100%, 0.9) !important;
+            background: hsla(210, 100%, 50%, 0.5) !important;
+            outline: solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+            box-shadow: none !important;
+        } */
+
+        body {
+            background-color: rgba(165, 92, 32, 0.26);
             background-size: 100%;
             background-position: center top;
-            font-family: Tahoma,Arial,"Hiragino Sans GB","simsun",sans-serif;
+            font-family: Tahoma, Arial, "Hiragino Sans GB", "simsun", sans-serif;
             background-attachment: fixed;
-            }
-        nav {
-            background-color: rgba(4,63,23,0.5);
             padding: 0;
-            position: fixed;
-            width: 100%;
-            box-shadow: -10px 10px 5px lemonchiffon;
-            z-index: 1;
         }
 
-        nav li{
-            list-style:none;
-            display: inline-block;
-            }
-        nav a{
-            float:left ;
+        nav {
+            background-color: #6ecdd6;
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            font-size: 20px;
+            font-weight: 200;
+
+
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+              height:60px;
+        }
+
+        nav li {
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            transition: all 0.5s;
+        }
+
+        .nav-right {
+            justify-content: flex-end;
+        }
+
+        .nav-home {
+            justify-content: flex-start;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 600;
+            background: skyblue;
+            max-width: 0;
+            overflow: hidden;
+            background:url("{% static 'article/logo.png' %}") no-repeat 0px -44px ;
+            background-size:84%;
+        }
+
+
+        nav a {
             text-decoration: none;
             color: #008071;
-            position: relative;
-
             transition-duration: 3s;
+            text-align: center;
+            padding: 10px;
+            color: white;
         }
 
-        nav a:hover{
+        nav a:hover {
             text-transform: uppercase;
+        }
+
+        .fixed {
+            position: fixed;
+            box-shadow: -10px 10px 5px lemonchiffon;
+            top: 0;
+            /* fixed之后，top值默认为offsetTop */
+        }
+
+        .fixed .logo {
+           height:100%;
+           max-width: 300px;
+           width:400px;
         }
 
     </style>
 
 </head>
-<body >
-  <header>
-    <nav>
-      <ul class="CF">
-        <li><a   style="font-size: 70px;margin-left: -30px;" href="/">My Blog</a></li>
-        <li><a   style="margin-left:100px;margin-top: 60px" href="/article" >文章</a></li>
-        <li  style="float: right"><a  style="margin-left:100px;margin-top: 60px;" href="/admin">管理</a></li>
-      </ul >
-    </nav>
-  </header>
+
+<body>
+{% block header%} {% endblock %}
+<!--header {-->
+<!--height: 50vh;-->
+<!--background:url(static no-repeat;-->
+<!--} 在这写static无效 因为django是先渲染数据然后合并基页。-->
+
+<nav>
+    <ul class="nav-list">
+        <li class="logo"><a href="/"> </a></li>
+        <li class="nav-home"><a href="/">首页</a></li>
+        <li><a href="/article">文章</a></li>
+        <li class="nav-right"><a href="/admin">管理</a></li>
+    </ul>
+</nav>
+
 <hr>
-<div style="padding-top: 100px" >{% block content %}{% endblock %}
+<div>
+    {% block content %} {% endblock %}
 </div>
 </body>
+<script>
+    const nav = document.querySelector("nav");
+    let originTop = nav.offsetTop;
+
+    function fixnav() {
+
+        if (originTop <= window.scrollY) {
+            nav.classList.add("fixed");
+            document.body.style.paddingTop = `${nav.offsetHeight}px`;
+        } else {
+            nav.classList.remove("fixed")
+            document.body.style.paddingTop = 0;
+        }
+    }
+    window.addEventListener("scroll", fixnav)
+
+</script>
+
 </html>

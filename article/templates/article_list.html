@@ -9,14 +9,15 @@ list
 {% endblock %}
 
 
-{% block content %}
+{% block header%}
 <style>
         .list{
          font-size:20px;
 
         margin:10px 0;
 
-
+        body{
+        margin-top: -19px;!important
 
         }
         .list>a:link{
@@ -29,8 +30,10 @@ list
             color:orange;
             }
 </style>
+{% endblock %}
 
-<div >
+{% block content %}
+<div style="position:relative">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-9">
